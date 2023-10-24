@@ -1,0 +1,30 @@
+
+
+{% block content %}
+ <h2>Calcular peso exacto de la carga</h2>
+ <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Calcular</button>
+ </form>
+
+ {% if carga %}
+    <h3>Resultados</h3>
+    <table>
+      <tr>
+        <th>Peso exacto de la carga</th>
+        <th>Saco de café especial</th>
+        <th>Saco de café defectuoso</th>
+        <th>Cambio de contenedor</th>
+        <th>Cambio de camión</th>
+      </tr>
+      <tr>
+        <td>{{ carga.peso_exacto_carga }} kg</td>
+        <td>{% if carga.especial %}Sí{% else %}No{% endif %}</td>
+        <td>{% if carga.defectuoso %}Sí{% else %}No{% endif %}</td>
+        <td>{% if carga.cambio_contenedor %}Sí{% else %}No{% endif %}</td>
+        <td>{% if carga.cambio_camion %}Sí{% else %}No{% endif %}</td>
+      </tr>
+    </table>
+ {% endif %}
+{% endblock %}
